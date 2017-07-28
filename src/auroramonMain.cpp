@@ -362,7 +362,7 @@ void LogEnergy(int seconds, const char *ymd)
     int pvo_period;
     int pin1watt = 0;
 int pin2watt = 0;
-int effic;
+float effic;
 int pin1volt = 0;
 int pin2volt = 0;
 int hours, mins;
@@ -453,7 +453,7 @@ int hours, mins;
     } else {
 fprintf(f, ",");
 }
-fprintf(f, ",,%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
+fprintf(f, ",,%d,%d,%.1f,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
 
   fputc('\n', f);
 
@@ -489,7 +489,7 @@ fprintf(f, ",,%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
 
 			url_string += wxString::Format(_T("&v9=%d"), pin2watt);
 
-			url_string += wxString::Format(_T("&v10=%d"), effic);
+			url_string += wxString::Format(_T("&v10=%.1f"), effic);
 
 			url_string += wxString::Format(_T("&v11=%d"), pin1volt);
 
@@ -545,7 +545,7 @@ fprintf(f, ",,%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
 fprintf(f, ",");
 }
 // add in new extended logging
-fprintf(f, ",,%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
+fprintf(f, ",,%d,%d,%.1f,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
 
                   
 
