@@ -485,11 +485,11 @@ url_string += wxString::Format(_T("&v8=%d"), pin1watt);
 
 url_string += wxString::Format(_T("&v9=%d"), pin2watt);
 
-url_string += wxString::Format(_T("&v10=%d"), effeciancy);
+url_string += wxString::Format(_T("&v10=%d"), effic);
 
-url_string += wxString::Format(_T("&v11=%d"), pin1volts);
+url_string += wxString::Format(_T("&v11=%d"), pin1volt);
 
-url_string += wxString::Format(_T("&v12=%d"), pin2volts);
+url_string += wxString::Format(_T("&v12=%d"), pin2volt);
 
 
             wxURL url(url_string);
