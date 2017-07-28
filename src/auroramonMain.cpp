@@ -1062,7 +1062,7 @@ LogCommMsg(wxString::Format(_T("Program start: Energy %7.3f  %8.3f %8.3f %9.3f %
                         double pw0, pw1, pw2, vt1, vt2;
                         static double tmpr = 0;
                         pw0 = iv->averages[0] / ir->n_av_pw0;
-                        pw1 = iv->averages[1] / ir->/ inverter_response[1].n_av_pwin;
+                        pw1 = iv->averages[1] / ir->n_av_pwin;
                         pw2 = iv->averages[3] / ir->n_av_pwin;
                         vt1 = iv->averages[2] / ir->n_av_pwin;
                         vt2 = iv->averages[4] / ir->n_av_pwin;
