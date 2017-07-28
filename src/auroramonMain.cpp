@@ -427,27 +427,23 @@ int hours, mins;
             }
         }
     }
-if(inverters[0].alive) {
-                    effic = inverter_response[0].effic;
-pin1watt = inverters[0].averages[1];
-pin2watt = inverters[0].averages[3];
-pin1volt = inverters[0].averages[2];
-pin2volt = inverters[0].averages[4];
-
-                 } else { 
-
-if(inverters[1].alive) {
-                    effic = inverter_response[1].effic;
-pin1watt = inverters[1].averages[1];
-pin2watt = inverters[1].averages[3];
-pin1volt = inverters[1].averages[2];
-pin2volt = inverters[1].averages[4];
-
-               } else {
-effic = 0;
-
-}
-}
+	if(inverters[0].alive) {
+		effic = inverter_response[0].effic;
+		pin1watt = inverter_response[1].pw[1];
+		pin2watt = inverter_response[1].pw[2];
+		pin1volt = inverter_response[1].vt[1];
+		pin2volt = inverter_response[1].vt[2];
+	} else { 
+		if(inverters[1].alive) {
+			effic = inverter_response[1].effic;
+			pin1watt = inverter_response[1].pw[1];
+			pin2watt = inverter_response[1].pw[2];
+			pin1volt = inverter_response[1].vt[1];
+			pin2volt = inverter_response[1].vt[2];
+		} else {
+			effic = 0;
+		}
+	}
 
 
     fprintf(f, "%2d:%.2d,%6d,%5d,,,%5.2f",  hours, mins, (int)(total_e*1000), total_p, inverters[0].temperature);
@@ -489,17 +485,15 @@ fprintf(f, ",,%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
                 url_string += wxString::Format(_T("&v6=%.1f"), grid_voltage);
             }
 
+			url_string += wxString::Format(_T("&v8=%d"), pin1watt);
 
-url_string += wxString::Format(_T("&v8=%d"), pin1watt);
+			url_string += wxString::Format(_T("&v9=%d"), pin2watt);
 
-url_string += wxString::Format(_T("&v9=%d"), pin2watt);
+			url_string += wxString::Format(_T("&v10=%d"), effic);
 
-url_string += wxString::Format(_T("&v10=%d"), effic);
+			url_string += wxString::Format(_T("&v11=%d"), pin1volt);
 
-url_string += wxString::Format(_T("&v11=%d"), pin1volt);
-
-url_string += wxString::Format(_T("&v12=%d"), pin2volt);
-
+			url_string += wxString::Format(_T("&v12=%d"), pin2volt);
 
             wxURL url(url_string);
             if((url_err = url.GetError()) != wxURL_NOERR)
@@ -1068,7 +1062,7 @@ LogCommMsg(wxString::Format(_T("Program start: Energy %7.3f  %8.3f %8.3f %9.3f %
                         double pw0, pw1, pw2, vt1, vt2;
                         static double tmpr = 0;
                         pw0 = iv->averages[0] / ir->n_av_pw0;
-                        pw1 = iv->averages[1] / ir->n_av_pwin;
+                        pw1 = iv->averages[1] / ir->/ inverter_response[1].n_av_pwin;
                         pw2 = iv->averages[3] / ir->n_av_pwin;
                         vt1 = iv->averages[2] / ir->n_av_pwin;
                         vt2 = iv->averages[4] / ir->n_av_pwin;
