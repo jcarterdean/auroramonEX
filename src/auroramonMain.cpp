@@ -448,7 +448,7 @@ if(inverters[0].alive)
     } else {
 fprintf(f, ",");
 }
-fprintf(f, ",%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
+fprintf(f, ",,%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
 
   fputc('\n', f);
 
@@ -542,7 +542,7 @@ url_string += wxString::Format(_T("&v12=%d"), pin2volt);
 fprintf(f, ",");
 }
 // add in new extended logging
-fprintf(f, ",%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
+fprintf(f, ",,%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
 
                   
 
