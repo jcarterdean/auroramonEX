@@ -383,12 +383,6 @@ int hours, mins;
         {
             total_e += inverters[inv].energy_total[0];
 
-pin1watt += inverters[inv].averages[1];
-pin2watt += inverters[inv].averages[3];
-pin1volt += inverters[inv].averages[2];
-pin2volt += inverters[inv].averages[4];
-
-
 
 
             if(inverters[inv].alive > 0)
@@ -435,10 +429,19 @@ pin2volt += inverters[inv].averages[4];
     }
 if(inverters[0].alive) {
                     effic = inverter_response[0].effic;
+pin1watt = inverters[0].averages[1];
+pin2watt = inverters[0].averages[3];
+pin1volt = inverters[0].averages[2];
+pin2volt = inverters[0].averages[4];
+
                  } else { 
 
 if(inverters[1].alive) {
                     effic = inverter_response[1].effic;
+pin1watt = inverters[1].averages[1];
+pin2watt = inverters[1].averages[3];
+pin1volt = inverters[1].averages[2];
+pin2volt = inverters[1].averages[4];
 
                } else {
 effic = 0;
