@@ -429,17 +429,17 @@ int hours, mins;
     }
 	if(inverters[0].alive) {
 		effic = inverter_response[0].effic;
-		pin1watt = inverter_response[1].pw[1];
-		pin2watt = inverter_response[1].pw[2];
-		pin1volt = inverter_response[1].vt[1];
-		pin2volt = inverter_response[1].vt[2];
+		pin1watt = (int)inverter_response[0].pw[1];
+		pin2watt = (int)inverter_response[0].pw[2];
+		pin1volt = (int)inverter_response[0].vt[1];
+		pin2volt = (int)inverter_response[0].vt[2];
 	} else { 
 		if(inverters[1].alive) {
 			effic = inverter_response[1].effic;
-			pin1watt = inverter_response[1].pw[1];
-			pin2watt = inverter_response[1].pw[2];
-			pin1volt = inverter_response[1].vt[1];
-			pin2volt = inverter_response[1].vt[2];
+			pin1watt = (int)inverter_response[1].pw[1];
+			pin2watt = (int)inverter_response[1].pw[2];
+			pin1volt = (int)inverter_response[1].vt[1];
+			pin2volt = (int)inverter_response[1].vt[2];
 		} else {
 			effic = 0;
 		}
