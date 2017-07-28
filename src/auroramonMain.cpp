@@ -433,12 +433,18 @@ pin2volt += inverters[inv].averages[4];
             }
         }
     }
-if(inverters[0].alive)
+if(inverters[0].alive) {
                     effic = inverter_response[0].effic;
-                else
-                if(inverters[1].alive)
+                 } else { 
+
+if(inverters[1].alive) {
                     effic = inverter_response[1].effic;
-                break;
+
+               } else {
+effic = 0;
+
+}
+}
 
 
     fprintf(f, "%2d:%.2d,%6d,%5d,,,%5.2f",  hours, mins, (int)(total_e*1000), total_p, inverters[0].temperature);
