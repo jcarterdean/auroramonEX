@@ -360,7 +360,12 @@ void LogEnergy(int seconds, const char *ymd)
     int period_5min;
     int got_power = 0;
     int pvo_period;
-    int hours, mins;
+    int pin1watt = 0;
+int pin2watt = 0;
+int effic;
+int pin1volt = 0;
+int pin2volt = 0;
+int hours, mins;
     int flag_log;
     float grid_voltage = -1;
 
@@ -377,6 +382,14 @@ void LogEnergy(int seconds, const char *ymd)
         if((inverter_address[inv] != 0) && (strcmp(ymd, inverters[0].today_done) == 0))
         {
             total_e += inverters[inv].energy_total[0];
+
+pin1watt += inverters[inv].averages[1];
+pin2watt += inverters[inv].averages[3];
+pin1volt += inverters[inv].averages[2];
+pin2volt += inverters[inv].averages[4];
+
+
+
 
             if(inverters[inv].alive > 0)
             {
@@ -420,13 +433,24 @@ void LogEnergy(int seconds, const char *ymd)
             }
         }
     }
+if(inverters[0].alive)
+                    effic = inverter_response[0].effic;
+                else
+                if(inverters[1].alive)
+                    effic = inverter_response[1].effic;
+                break;
+
 
     fprintf(f, "%2d:%.2d,%6d,%5d,,,%5.2f",  hours, mins, (int)(total_e*1000), total_p, inverters[0].temperature);
     if(grid_voltage > 0)
     {
         fprintf(f, ",%5.1f", grid_voltage);
-    }
-    fputc('\n', f);
+    } else {
+fprintf(f, ",");
+}
+fprintf(f, ",%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
+
+  fputc('\n', f);
 
     fclose(f);
 
@@ -455,6 +479,18 @@ void LogEnergy(int seconds, const char *ymd)
             {
                 url_string += wxString::Format(_T("&v6=%.1f"), grid_voltage);
             }
+
+
+url_string += wxString::Format(_T("&v8=%d"), pin1watt);
+
+url_string += wxString::Format(_T("&v9=%d"), pin2watt);
+
+url_string += wxString::Format(_T("&v10=%d"), effeciancy);
+
+url_string += wxString::Format(_T("&v11=%d"), pin1volts);
+
+url_string += wxString::Format(_T("&v12=%d"), pin2volts);
+
 
             wxURL url(url_string);
             if((url_err = url.GetError()) != wxURL_NOERR)
@@ -502,8 +538,16 @@ void LogEnergy(int seconds, const char *ymd)
                     if(grid_voltage > 0)
                     {
                         fprintf(f, ",%5.1f", grid_voltage);
-                    }
-                    fputc('\n', f);
+                    } else {
+fprintf(f, ",");
+}
+// add in new extended logging
+fprintf(f, ",%d,%d,%d,%d,%d",pin1watt,pin2watt,effic,pin1volt,pin2volt);
+
+                  
+
+
+fputc('\n', f);
                     fclose(f);
                 }
             }
@@ -1023,6 +1067,7 @@ LogCommMsg(wxString::Format(_T("Program start: Energy %7.3f  %8.3f %8.3f %9.3f %
                         {
                             tmpr = iv->averages[5] / ir->n_av_tmpr;
                             iv->temperature = tmpr;
+
                         }
 
                         iv->last_power_out = (int)(pw0 + 0.05);
