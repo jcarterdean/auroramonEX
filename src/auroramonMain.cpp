@@ -440,10 +440,10 @@ int hours, mins;
 		} else {
 			ticksinperiod = 1;
 		}
-		pin1watt = inverters[0].averages[1] / inverter_response[0].n_av_pwin;
-		pin2watt = inverters[0].averages[3] / inverter_response[0].n_av_pwin;
-		pin1volt = inverters[0].averages[2] / inverter_response[0].n_av_pwin;
-		pin2volt = inverters[0].averages[4] / inverter_response[0].n_av_pwin;
+		pin1watt = inverters[0].averages[1] / ticksinperiod;
+		pin2watt = inverters[0].averages[3] / ticksinperiod;
+		pin1volt = inverters[0].averages[2] / ticksinperiod;
+		pin2volt = inverters[0].averages[4] / ticksinperiod;
 	} else { 
 		if(inverters[1].alive) {
 			effic = inverter_response[1].effic;
@@ -456,10 +456,10 @@ int hours, mins;
 			} else {
 				ticksinperiod = 1;
 			}
-			pin1watt = inverters[1].averages[1] / inverter_response[1].n_av_pwin;
-			pin2watt = inverters[1].averages[3] / inverter_response[1].n_av_pwin;
-			pin1volt = inverters[1].averages[2] / inverter_response[1].n_av_pwin;
-			pin2volt = inverters[1].averages[4] / inverter_response[1].n_av_pwin;
+			pin1watt = inverters[1].averages[1] / ticksinperiod;
+			pin2watt = inverters[1].averages[3] / ticksinperiod;
+			pin1volt = inverters[1].averages[2] / ticksinperiod;
+			pin2volt = inverters[1].averages[4] / ticksinperiod;
 		} else {
 			effic = 0;
 		}
