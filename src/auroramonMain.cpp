@@ -1764,10 +1764,10 @@ void Mainframe::OnClose(wxCloseEvent& WXUNUSED(event))
 void Mainframe::OnAbout()
 {
     wxAboutDialogInfo info;
-    info.SetName(_("Aurora Monitor"));
-    info.SetVersion(_("1.07"));
+    info.SetName(_("Aurora MonitorEX"));
+    info.SetVersion(_("1.08c"));
     info.SetDescription(_("Receives and displays data from up to 2 Aurora power inverters.\n"));
-    info.SetCopyright(_T("(C) 2012 Jonathan Duddington <jonsd@users.sourceforge.net>"));
+    info.SetCopyright(_T("(C) 2012 Jonathan Duddington <jonsd@users.sourceforge.net>, modified by j.cd"));
     info.SetLicence(_T("GNU GENERAL PUBLIC LICENSE Version 3\n\nhttp://www.gnu.org/licenses/gpl.html"));
 
     wxAboutBox(info);
